@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic
+  labels:
+    app: petclinic
+    tags.datadoghq.com/env: "production"
+    tags.datadoghq.com/service: "petclinic2"
+    tags.datadoghq.com/version: "v2.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: omearaj/spring-petclinic-dd:main
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: 'production,kubernetes'
+        - name: MYSQL_HOST
+          value: petclinic-db-mysql
+        - name: MYSQL_USERNAME
+          value: root
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: petclinic-db-mysql
+              key: mysql-root-password
