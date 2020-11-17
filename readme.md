@@ -1,3 +1,3 @@
 # Spring Petclinic deployed to Google Cloud using Kubernetes
-# DataDog
+# Dyntrace
 # Pipeline
