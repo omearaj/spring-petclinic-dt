@@ -30,4 +30,4 @@ jobs:
         helm repo add dynatrace https://raw.githubusercontent.com/Dynatrace/helm-charts/master/repos/stable
         helm repo add stable https://charts.helm.sh/stable
         helm repo update
-        helm install dynatrace-oneagent-operator dynatrace/dynatrace-oneagent-operator -n dynatrace -f dynatrace/values.yaml --set apiToken=${{ secrets.DYNATRACE_API_KEY }} --set apiUrl=https://pij44371.live.dynatrace.com/api
+        helm install dynatrace-oneagent-operator dynatrace/dynatrace-oneagent-operator -n dynatrace -f dynatrace/values.yaml --set apiToken=${{ secrets.DYNATRACE_API_KEY }},apiUrl=https://pij44371.live.dynatrace.com/api
