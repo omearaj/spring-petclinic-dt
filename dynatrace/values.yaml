@@ -3,7 +3,7 @@ operator:
   image: ""
 oneagent:
   name: "oneagent"
-  apiUrl: "https://ENVIRONMENTID.live.dynatrace.com/api"
+  apiUrl: "https://pij44371.live.dynatrace.com/api"
   image: ""
   args:
     - --set-app-log-content-access=true
