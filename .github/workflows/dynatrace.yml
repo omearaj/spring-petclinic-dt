@@ -6,7 +6,7 @@ on: workflow_dispatch
 
 env:
   zone: us-central1-c
-  releaseName: datadog-agent 
+  releaseName: dynatrace-oneagent-operator 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -30,4 +30,4 @@ jobs:
         helm repo add dynatrace https://raw.githubusercontent.com/Dynatrace/helm-charts/master/repos/stable
         helm repo add stable https://charts.helm.sh/stable
         helm repo update
-        helm install dynatrace-oneagent-operator dynatrace/dynatrace-oneagent-operator -n dynatrace -f dynatrace/values.yaml --set secret.apiToken=${{ secrets.DYNATRACE_API_KEY }} --set oneagent.apiUrl=${{ secrets.apiUrl }}
+        helm install ${{ env.releaseName }} dynatrace/dynatrace-oneagent-operator -n dynatrace -f dynatrace/values.yaml --set secret.apiToken=${{ secrets.DYNATRACE_API_KEY }} --set oneagent.apiUrl=${{ secrets.apiUrl }}
